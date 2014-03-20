@@ -1,0 +1,36 @@
+#write-html('Página teste')
+
+#define-custom-tag a.my-custom-class(attr(title,'Customized hiperlink')) my-a
+#define-custom-tag h3#my-custom-id(attr(id,countSection++)) my-h3
+
+h1('Esta é uma página de teste')
+
+p('Estamos escrevendo html de forma mais simples')
+
+my-h3('Sessões customizadas com nossa tag criada a partir de outra preexistente')
+my-a('contato') | my-a('fale conosco') | my-a('feeds') 
+
+my-h3('Outra sessãoo customizada, podemos modificar atributos ao utilizar')
+my-a('contato').outra-classe | my-a('fale conosco').duas.classes | my-a('feeds').empty 
+
+my-h3('Outra sessãoo customizada, fazendo listas')
+li( if(param('link1'), 'link1') p("Voce esta no link1") else a("Link1") end )
+li( if(param('link2'), 'link1') p("Voce esta no link2") else a("Link2") end )
+li( if(param('link3'), 'link1') p("Voce esta no link3") else a("Link3") end )
+
+h3('Sessão padrão')
+a('contato') | a('fale conosco').classe-nova | a('feeds')
+
+my-h3('Sessão para tabela - os contadores são da sessão customizada são incrementados')
+line-table('Escrever tabela é fácil assim', 'Nova coluna', 'Nova coluna', 'Nova coluna')
+line-table('Cada linha é criada sem se preocupar com o formato da tabela', 'Nova coluna', 'Nova coluna', 'Nova coluna')
+line-table('Repare que eu nem abri, nem preciso fechar a tabela, isso é automático pelo escopo', 'Nova coluna', 'Nova coluna', 'Nova coluna')
+
+my-h3('Seção para outra uso de sintáxe markdown')
+#write-markdown(
+	*enfatizado*
+	**fortemente enfatizado**
+	1. Um item em uma lista ordenada
+	2. Outro item em uma lista ordenada
+)
+

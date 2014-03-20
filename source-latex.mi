@@ -1,0 +1,10 @@
+#write-latex('Artigo teste', 'Nota de rodape', 'http://teste.com.br', 'Autor1;Autor2;Autor3')
+
+#abstract{
+	
+}
+
+#document{
+	
+}
+
