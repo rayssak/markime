@@ -1,10 +1,40 @@
 #write-latex('Artigo teste', 'Nota de rodape', 'http://teste.com.br', 'Autor1;Autor2;Autor3')
 
 #abstract{
-	
+Nome do artigo
+==============
+
+Descrição do artigo, bla bla, bla
+
 }
 
 #document{
-	
+
+Nome do artigo
+==============
+
+Sessão 1
+--------
+
+Parágrafos são separatos 
+por uma linha em branco, a quebra não separa parágrafos.
+
+Texto em *itálico*,
+**negrito**, `monospacado`.
+ 
+Um [link](http://teste.com).
+ 
+Lista nao ordenada:
+ 
+  * lista a
+  * lista g
+  * lista c
+
+Lista ordenada:
+
+  1. lista 1
+  2. lista 2
+  3. lista 3
+ 
 }
 
