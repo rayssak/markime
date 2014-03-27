@@ -1,4 +1,4 @@
-Fase 1: (Requisitos do domínio) 
+﻿Fase 1: (Requisitos do domínio) 
 	*descrição informal do domínio de aplicação escolhido; 
 	*levantamento dos elementos esseciais à linguagem; 
 	**A idéia é que a linguagem a ser desenvolvida
@@ -6,10 +6,12 @@ Fase 1: (Requisitos do domínio)
 	lista de elementos essenciais deve ser justificada para o uso no domínio.
 
 Fase 2: (Levantamento dos conceitos) 
-	* determinar o projeto da linguagem. 
-	* definir os conceitos sobre a linguagem, desde os tipos primitivos e
-	  compostos que serão providos na linguagem até as expressões e comandos, bem
-	  como as abstrações. 
-	* Note que os conceitos relacionados à vinculação (tempo e modo) de variáveis e tipos, sistema de verificação de tipos a ser utilizado e os modos
-de avaliação dos elementos devem também ser descritos porque são parte do projeto
-da linguagem.
+	* definir os conceitos sobre a linguagem
+		*tipos primitivos:
+		    - A linguagem terá 3 tipos primitivos: inteiro, string e booleano
+	        *compostos que serão providos na linguagem até as expressões e comandos, 
+		    - Os principais tipos da linguagem são compostos, neles teremos representações de quase qualquer coisa que pode ser representada por linguagens de markup, pois a ideia é que cada comando latex, tag html, nó xml global possa ser representado por tipos da nossa linguagem. Exemplos: a, p, title, etc.
+                *abstrações. 
+	* Conceitos relacionados à vinculação (tempo e modo) de variáveis e tipos, 
+        * Sistema de verificação de tipos a ser utilizado 
+	* Modos de avaliação dos elementos
