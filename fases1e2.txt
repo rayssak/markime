@@ -1,6 +1,11 @@
 ﻿Fase 1: (Requisitos do domínio) 
 	*descrição informal do domínio de aplicação escolhido; 
+		(escrever código em linguagem de markup, tais como HTML/XHTML, LaTeX, XML, é não-flexível, repetitivo e ponto dinâmico, então a linguagem proposta irá facilitar nessa tarefa em níveis diferentes de conhecimento - podemos ter uma forma simples de escrever documentos simples, ou uma forma mais elaborada para quem tiver mais conhecimento)
+		{Voltado tanto para o publico que não tem muita familiaridade com as linguagens de programação e com as linguagens de marcação.
+		Como também para pessoas que conhecem e tem um certo conhecimento sobre as linguagens de marcação, essas últimas terão mais flexibilidade e possibilidades}
+		{Mais fácil de ler e escrever...}
 	*levantamento dos elementos esseciais à linguagem; 
+		(repetição, armazenamento de variáveis, condições, herança de propriedade, fazer operação em cima de textos/strings, aninhamento de comandos)
 	**A idéia é que a linguagem a ser desenvolvida
 	facilite o desenvolvimento de software para o domínio escolhido. Dessa forma, a
 	lista de elementos essenciais deve ser justificada para o uso no domínio.
@@ -11,7 +16,14 @@ Fase 2: (Levantamento dos conceitos)
 		    - A linguagem terá 3 tipos primitivos: inteiro, string e booleano
 	        *compostos que serão providos na linguagem até as expressões e comandos, 
 		    - Os principais tipos da linguagem são compostos, neles teremos representações de quase qualquer coisa que pode ser representada por linguagens de markup, pois a ideia é que cada comando latex, tag html, nó xml global possa ser representado por tipos da nossa linguagem. Exemplos: a, p, title, etc.
-                *abstrações. 
+				*abstrações. 
+					- Cada tipo diferente terá operações relacionadas: por exemplo, 
+					--calcular/incrementar inteiros, 
+					--uppercase/lowercase/concatenação/normalização/escape de strings	
+					--mudança de atributos específicos de cada tipo complexo, como alteração de link da tag "a", alteração de source da tag "img", 
+					--alteração de id/class de todos os elementos html
 	* Conceitos relacionados à vinculação (tempo e modo) de variáveis e tipos, 
         * Sistema de verificação de tipos a ser utilizado 
+			 -(Tipos monomórfico e com vinculação estática)
 	* Modos de avaliação dos elementos
+		- Avaliação incremental, a cada novo comando, a linguagem na mesma ordem, a única diferença está no fechamento dos possíveis comandos anteriores que dependem do término das operações posteriores, isso pode ser feito de forma de pilha.
