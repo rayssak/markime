@@ -3,7 +3,7 @@ structure T = Tokens
 
 type pos = int
 type svalue = T.svalue
-type ('a,'b) token ('a,'b) T.token
+type ('a,'b) token = ('a,'b) T.token
 type lexresult = (svalue,pos) token
 type lexarg = string
 type arg = lexarg
@@ -20,7 +20,7 @@ val badCh : string * string * int * int -> unit = fn
 val eof = fn fileName => T.EOF (!lin,!col);
 
 (* Keyword Management *)
-structure Keyword :
+structure KeyWord :
 sig val find : string ->
 	(int * int -> (svalue,int) token) option
 end =
@@ -29,7 +29,7 @@ struct
 	val HashFactor = 5
 	val hash = fn
 		s => List.foldr (fn (c,v) =>
-			(v*HashFactor+(old c)) mod TableSize) 0 (explode s)
+			(v*HashFactor+(ord c)) mod TableSize) 0 (explode s)
 	val HashTable = Array.array(TableSize,nil) :
 		(string * (int * int -> (svalue,int) token))
 		list Array.array
@@ -60,7 +60,7 @@ alpha		= [A-Za-z];
 hexa		= "0"("x"|"X")[0-9A-Fa-f];
 digit		= [0-9];
 ws			= [\ \t];
-eol			= ("\013\010"|"\010\013");
+eol			= ("\013\010"|"\010\013"|"\010");
 %%
 <INITIAL>{ws}* 	=> (lin:=1; eolpos:=0;
 					YYBEGIN PI; continue ());
