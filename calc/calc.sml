@@ -65,7 +65,7 @@ struct
 		  val _ = case result
 			    of SOME r =>
 				TextIO.output(TextIO.stdOut,
-				       "" ^ (Int.toString r) ^ "  \n")
+				       "" ^ r ^ "  \n")
 			     | NONE => TextIO.output(TextIO.stdOut,
 				       "")
 	       in if CalcParser.sameToken(nextToken,dummyEOF) then TextIO.output(TextIO.stdOut,

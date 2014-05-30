@@ -13,13 +13,18 @@ fun error (e,l : int,_) = TextIO.output (TextIO.stdOut, String.concat[
 
 %%
 %header (functor CalcLexFun(structure Tokens: Calc_TOKENS));
-alpha=[A-Za-z\[\]];
-digit=[0-9];
-ws = [\ \t];
+alpha=[ \(\)\,\.0-9A-Za-z\[\]];
+
+bad_words = ["shit|shot |shit |shot "];
+
+ws = [\t];
 %%
 \n       => (pos := (!pos) + 1; lex());
 {ws}+    => (lex());
-{digit}+ => (Tokens.NUM (valOf (Int.fromString yytext), !pos, !pos));
+
+
+{bad_words}+ => (error ("ignoring bad words "^yytext,!pos,!pos);
+             lex()); 
 
 "+"      => (Tokens.PLUS(!pos,!pos));
 "*"      => (Tokens.TIMES(!pos,!pos));
@@ -27,14 +32,12 @@ ws = [\ \t];
 {alpha}+ => (if yytext="print"
                  then Tokens.PRINT(!pos,!pos)
 	     else if yytext="[link]"
-		 then Tokens.LINK(!pos,!pos)
-                 
+		 then Tokens.LINK(!pos,!pos)                 
 	     else Tokens.ID(yytext,!pos,!pos)
             );
 "-"      => (Tokens.SUB(!pos,!pos));
 "^"      => (Tokens.CARAT(!pos,!pos));
 "/"      => (Tokens.DIV(!pos,!pos));
-"."      => (error ("ignoring bad character "^yytext,!pos,!pos);
-             lex());
+
 
 
