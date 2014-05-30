@@ -13,7 +13,7 @@ fun error (e,l : int,_) = TextIO.output (TextIO.stdOut, String.concat[
 
 %%
 %header (functor CalcLexFun(structure Tokens: Calc_TOKENS));
-alpha=[A-Za-z];
+alpha=[A-Za-z\[\]];
 digit=[0-9];
 ws = [\ \t];
 %%
@@ -26,7 +26,10 @@ ws = [\ \t];
 ";"      => (Tokens.SEMI(!pos,!pos));
 {alpha}+ => (if yytext="print"
                  then Tokens.PRINT(!pos,!pos)
-                 else Tokens.ID(yytext,!pos,!pos)
+	     else if yytext="[link]"
+		 then Tokens.LINK(!pos,!pos)
+                 
+	     else Tokens.ID(yytext,!pos,!pos)
             );
 "-"      => (Tokens.SUB(!pos,!pos));
 "^"      => (Tokens.CARAT(!pos,!pos));

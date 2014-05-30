@@ -45,21 +45,33 @@ struct
  *)
 
   fun parse () = 
-      let val lexer = CalcParser.makeLexer (fn _ => Option.getOpt(TextIO.inputLine TextIO.stdIn, ""))
+      (*let val lexer = CalcParser.makeLexer (fn _ => Option.getOpt(TextIO.inputLine TextIO.stdIn, "")) *)
+        let val inStream =  TextIO.openIn "teste.in";
+	val grab : int -> string = fn 
+            n => if TextIO.endOfStream inStream 
+                 then ""
+                 else TextIO.inputN (inStream,n);
+
+	val lexer = CalcParser.makeLexer (grab)
 	  val dummyEOF = CalcLrVals.Tokens.EOF(0,0)
 	  val dummySEMI = CalcLrVals.Tokens.SEMI(0,0)
+	  
+	  val _ = TextIO.output(TextIO.stdOut, "Cabeçalho latex com imports uteis, encoding, etc \n\n")
+	
 	  fun loop lexer =
 	      let val (result,lexer) = invoke lexer
 		  val (nextToken,lexer) = CalcParser.Stream.get lexer
+		  
 		  val _ = case result
 			    of SOME r =>
 				TextIO.output(TextIO.stdOut,
-				       "result = " ^ (Int.toString r) ^ "\n")
-			     | NONE => ()
-	       in if CalcParser.sameToken(nextToken,dummyEOF) then ()
+				       "" ^ (Int.toString r) ^ "  \n")
+			     | NONE => TextIO.output(TextIO.stdOut,
+				       "")
+	       in if CalcParser.sameToken(nextToken,dummyEOF) then TextIO.output(TextIO.stdOut,
+				       "rodape do latex ")
 		  else loop lexer
 	      end
        in loop lexer
       end
-
 end (* structure Calc *)

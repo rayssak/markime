@@ -16,9 +16,9 @@ fun lookup "bogus" = 10000
 %left TIMES DIV
 %right CARAT
 
-%term ID of string | NUM of int | PLUS | TIMES | PRINT |
-      SEMI | EOF | CARAT | DIV | SUB
-%nonterm EXP of int | START of int option
+%term ID of string | NUM of int | PLUS | TIMES | PRINT | LINK |
+      SEMI | EOF | CARAT | DIV | SUB | TXT of string
+%nonterm EXP of int | START of int option | VAL of string
 
 %name Calc
 
@@ -33,10 +33,14 @@ fun lookup "bogus" = 10000
 
 (* the parser returns the value associated with the expression *)
 
-  START : PRINT EXP (print (Int.toString EXP);
-                     print "\n";
-                     SOME EXP)
-        | EXP (SOME EXP)
+  START : PRINT EXP (SOME EXP)
+        | EXP (SOME EXP) 
+	| LINK EXP (print "[ ";
+		    print (Int.toString EXP); 
+		    print " ] ( ";
+		    print (Int.toString EXP); 
+		    print " ) \n"; 
+		    SOME EXP)
         | (NONE)
   EXP : NUM             (NUM)
       | ID              (lookup ID)
@@ -46,6 +50,6 @@ fun lookup "bogus" = 10000
       | EXP SUB EXP     (EXP1-EXP2)
       | EXP CARAT EXP   (let fun e (m,0) = 1
                                 | e (m,l) = m*e(m,l-1)
-                         in e (EXP1,EXP2)
+                         in e (EXP1, EXP2)
                          end)
 
