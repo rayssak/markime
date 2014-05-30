@@ -45,7 +45,7 @@ struct
  *)
 
   fun parse () = 
-      let val lexer = CalcParser.makeLexer (fn _ => TextIO.inputLine TextIO.stdIn)
+      let val lexer = CalcParser.makeLexer (fn _ => Option.getOpt(TextIO.inputLine TextIO.stdIn, ""))
 	  val dummyEOF = CalcLrVals.Tokens.EOF(0,0)
 	  val dummySEMI = CalcLrVals.Tokens.SEMI(0,0)
 	  fun loop lexer =
