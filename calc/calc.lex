@@ -12,28 +12,34 @@ fun error (e,l, k) = TextIO.output (TextIO.stdOut, String.concat[
       ])
 
 %%
+
 %header (functor CalcLexFun(structure Tokens: Calc_TOKENS));
 alpha=[ \(\)\,\.0-9A-Za-z\[\]];
 
 bad_words = ["shit|shot |shit |shot "];
 
 ws = [\t];
-%%
-{ws}+    => (lex());
+%s DEFAULT COMMENT;
 
-{bad_words}+ => (error ("ignoring bad words "^yytext,!pos,!pos);
+%%
+
+<INITIAL>		=> (YYBEGIN DEFAULT; continue ());
+<DEFAULT>"//"		=> (YYBEGIN COMMENT; continue ());
+<DEFAULT>{ws}+		=> (lex());
+
+<DEFAULT>{bad_words}+ => (error ("ignoring bad words "^yytext,!pos,!pos);
              lex()); 
 
-"*"      => (Tokens.IT(!pos,!pos));
-"**"      => (Tokens.NEG(!pos,!pos));
-\n      => (Tokens.SEMI(!pos,!pos));
-{alpha}+ => (if yytext="print"
-                 then Tokens.PRINT(!pos,!pos)
-	     else if yytext="[link]"
-		 then Tokens.LINK(!pos,!pos)                 
-	     else Tokens.ID(yytext,!pos,!pos)
-            );
-"//"	=> (Tokens.COMMENT(!pos,!pos));
+<DEFAULT>"*"		=> (Tokens.IT(!pos,!pos));
+<DEFAULT>"**"		=> (Tokens.NEG(!pos,!pos));
+<DEFAULT>\n		=> (Tokens.SEMI(!pos,!pos));
+<DEFAULT>{alpha}+	=> (if yytext="print"
+			      then Tokens.PRINT(!pos,!pos)
+			    else if yytext="[link]"
+			      then Tokens.LINK(!pos,!pos)                 
+			    else Tokens.TXT(yytext,!pos,!pos)
+			    );
+<DEFAULT>"//"		=> (Tokens.COMMENT(!pos,!pos));
 
-
-
+<COMMENT>\n		=> (YYBEGIN DEFAULT; continue ());
+<COMMENT>.		=> (continue ());

@@ -1,8 +1,4 @@
 (* Sample interactive calculator for ML-Yacc *)
-
-fun lookup "bogus" = "10000"
-  | lookup s = s
-
 %%
 
 %eop EOF SEMI
@@ -12,31 +8,22 @@ fun lookup "bogus" = "10000"
 
 %pos int
 
-%left SUB PLUS
-%left TIMES DIV
-%right CARAT
-
-%term ID of string | NUM of string | PLUS | COMMENT | TIMES | IT | NEG | PRINT | LINK |
-      SEMI | EOF | CARAT | DIV | SUB | TXT of string
-%nonterm EXP of string | START of string option | VAL of string
+%term COMMENT | IT | NEG | PRINT | LINK |
+      SEMI | EOF | TXT of string
+%nonterm EXP of string | START of string option
 
 %name Calc
 
-%subst PRINT for ID
-%prefer PLUS TIMES DIV SUB
 %keyword PRINT SEMI
 
 %noshift EOF
-%value ID ("bogus")
 %verbose
 %%
 
 (* the parser returns the value associated with the expression *)
 
   START :
-        COMMENT VAL COMMENT ( print "";
-		    SOME VAL) 
-	| PRINT EXP (SOME EXP)
+        PRINT EXP (SOME EXP)
 	| EXP (SOME EXP) 
 	| LINK EXP (print "[ ";
 		    print (EXP); 
@@ -54,7 +41,4 @@ fun lookup "bogus" = "10000"
 		    SOME EXP)
 	
         | (NONE)
-  EXP : NUM             (NUM)
-      | ID              (lookup ID)
-      | EXP PLUS EXP    (EXP1^ " " ^EXP2)
-  VAL : TXT             ("")    
+  EXP : TXT             (TXT)
