@@ -39,7 +39,6 @@ ws = [\t];
 			      then Tokens.LINK(!pos,!pos)                 
 			    else Tokens.TXT(yytext,!pos,!pos)
 			    );
-<DEFAULT>"//"		=> (Tokens.COMMENT(!pos,!pos));
 
 <COMMENT>\n		=> (YYBEGIN DEFAULT; continue ());
 <COMMENT>.		=> (continue ());

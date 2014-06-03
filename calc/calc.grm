@@ -8,7 +8,7 @@
 
 %pos int
 
-%term COMMENT | IT | NEG | PRINT | LINK |
+%term IT | NEG | PRINT | LINK |
       SEMI | EOF | TXT of string
 %nonterm EXP of string | START of string option
 
