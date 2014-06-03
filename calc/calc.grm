@@ -31,7 +31,7 @@
 		    print (EXP); 
 		    print " ) \n"; 
 		    SOME EXP)
-	| IT EXP IT (print "textif{ ";
+	| IT EXP IT (print "textit{ ";
 		    print (EXP); 
 		    print " } "; 
 		    SOME EXP)
