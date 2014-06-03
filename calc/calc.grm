@@ -9,7 +9,7 @@
 %pos int
 
 %term IT | NEG | PRINT | LINK |
-      SEMI | EOF | TXT of string
+      SEMI | PAR_OPEN | PAR_CLOSE | EOF | TXT of string
 %nonterm EXP of string | START of string option
 
 %name Calc
@@ -25,12 +25,12 @@
   START :
         PRINT EXP (SOME EXP)
 	| EXP (SOME EXP) 
-	| LINK EXP (print "[ ";
+	| LINK PAR_OPEN EXP PAR_CLOSE (print "[ ";
 		    print (EXP); 
-		    print " ] ";
-		    print (EXP); 
-		    print " ) \n"; 
-		    SOME EXP)
+		    print " ] {";
+		    print (EXP);
+		    print "}";
+		    SOME EXP )
 	| IT EXP IT (print "textit{ ";
 		    print (EXP); 
 		    print " } "; 

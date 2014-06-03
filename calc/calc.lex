@@ -14,7 +14,7 @@ fun error (e,l, k) = TextIO.output (TextIO.stdOut, String.concat[
 %%
 
 %header (functor CalcLexFun(structure Tokens: Calc_TOKENS));
-alpha=[ \(\)\,\.0-9A-Za-z\[\]];
+alpha=[ \,\.0-9A-Za-z];
 
 bad_words = ["shit|shot |shit |shot "];
 
@@ -32,11 +32,12 @@ ws = [\t];
 
 <DEFAULT>"*"		=> (Tokens.IT(!pos,!pos));
 <DEFAULT>"**"		=> (Tokens.NEG(!pos,!pos));
+<DEFAULT>"("		=> (Tokens.PAR_OPEN(!pos,!pos));
+<DEFAULT>")"		=> (Tokens.PAR_CLOSE(!pos,!pos));
+<DEFAULT>"+"		=> (Tokens.LINK(!pos,!pos));
 <DEFAULT>\n		=> (Tokens.SEMI(!pos,!pos));
 <DEFAULT>{alpha}+	=> (if yytext="print"
 			      then Tokens.PRINT(!pos,!pos)
-			    else if yytext="[link]"
-			      then Tokens.LINK(!pos,!pos)                 
 			    else Tokens.TXT(yytext,!pos,!pos)
 			    );
 
