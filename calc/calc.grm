@@ -8,7 +8,7 @@
 
 %pos int
 
-%term IT | NEG | PRINT | LINK |
+%term IT | NEG | PRINT | LINK | ASPAS |
       SEMI | PAR_OPEN | PAR_CLOSE | EOF | TXT of string
 %nonterm EXP of string | START of string option
 
@@ -38,6 +38,10 @@
 	| NEG EXP NEG (print "textbf{ ";
 		    print (EXP); 
 		    print " } "; 
+		    SOME EXP)
+	| ASPAS EXP ASPAS (print "``";
+		    print (EXP);
+		    print "\"";
 		    SOME EXP)
 	
         | (NONE)
