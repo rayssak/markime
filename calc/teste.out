@@ -1,4 +1,8 @@
-Cabeçalho latex com imports uteis, encoding, etc 
+\documentclass[12pt]{article} 
+\usepackage[latin1,utf8]{inputenc} 
+\usepackage[portuges]{babel} 
+\usepackage[pdftex]{graphicx}  
+\graphicspath{{figures/}}  
 
 primeira linha 
 [ linkteste.com.br ] {linkteste.com.br}

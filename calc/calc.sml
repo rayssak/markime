@@ -50,7 +50,7 @@ struct
 	  val dummyEOF = MarkimeLrVals.Tokens.EOF(0,0)
 	  val dummySEMI = MarkimeLrVals.Tokens.SEMI(0,0)
 	  
-	  val _ = TextIO.output(outStream, "Cabeçalho latex com imports uteis, encoding, etc \n\n")
+	  val _ = TextIO.output(outStream, "\\documentclass[12pt]{article} \n\\usepackage[latin1,utf8]{inputenc} \n\\usepackage[portuges]{babel} \n\\usepackage[pdftex]{graphicx}  \n\\graphicspath{{figures/}}  \n\n")
 	  val _ = TextIO.closeOut outStream;
 	
 	  fun loop lexer =
