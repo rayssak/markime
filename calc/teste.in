@@ -1,4 +1,4 @@
- #document
+  #document
 //o primeiro caracter do texto está sendo lido automaticamente pelo arquivo (por isso esse espaço em branco, depois podemos ver isso )
 primeira linha 
 [link] (linkteste.com.br)
@@ -15,36 +15,34 @@ blabla72
 naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista
 *italico*
 *"italico com aspas"*
-*"aspas" palavra a direita*
-*esquerda "meio aspas" direita*
+//*palavra a esquerda "aspas"*
+//*"aspas" palavra a direita*
+//*esquerda "meio aspas" direita*
+
+**negrito**
+**"negrito com aspas"**
 
 deixar possivel utilizar as duas formas
 * ** italico e negrito** *
 ** *negrito e italico* **
 ***terceira forma de escrever italico e negrito***
 
-* ** "esquerda aspas" expressao ** *
-* ** expressao "direita aspas"** *
-* ** "esquerda aspas" expressao "direita aspas"** *
-* ** esquerda "aspas" direita** *
-
-** * "esquerda aspas" expressao * **
-** * expressao "direita aspas" * **
-** * "esquerda aspas" expressao "direita aspas" * **
-** * esquerda "aspas" direita * **
 
 
-*** "esquerda aspas" expressao ***
-*** expressao "direita aspas" ***
-*** "esquerda aspas" expressao "direita aspas" ***
-*** esquerda "aspas" direita ***
+
+//*** "esquerda aspas" expressao ***
+//*** expressao "direita aspas" ***
+//*** "esquerda aspas" expressao "direita aspas" ***
+//*** esquerda "aspas" direita ***
 
 ultima linha
-"aspas"
-"aspas" palavra a direita
-palavra a esquerda "aspas"
-"aspas"
-palavra a esquerda "sdasd" palavra a direita
+print a 
+
+a+b
+
+
+"aspas" 
+
 #enumerate
 \it teste 1
 \it teste 2
