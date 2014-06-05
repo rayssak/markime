@@ -9,6 +9,11 @@ fun print_exec(txt: string) =
     helper(txt)
   end
 
+fun printList ([]:string list) = print_exec ""
+	| printList (h::nil:string list) = print_exec h
+	| printList (h::tail:string list) =(print_exec h; printList tail);
+
+
 %%
 
 %eop EOF SEMI
@@ -31,115 +36,49 @@ fun print_exec(txt: string) =
 (* the parser returns the value associated with the expression *)
 
   START :
-        EXP (print_exec (EXP); print_exec "\n"; SOME EXP) 
-	| LINK PAR_OPEN EXP PAR_CLOSE (print_exec "[ ";
-		    print_exec (EXP); 
-		    print_exec " ] {";
-		    print_exec (EXP);
-		    print_exec "}\n";
+        EXP (printList [EXP, "\n"];
+	     SOME EXP) 
+	| LINK PAR_OPEN EXP PAR_CLOSE (printList [ "[ ", EXP, " ] {", EXP, "}\n"] ;
 		    SOME EXP )
-	| IT EXP IT (print_exec "\\textit{ ";
-		    print_exec (EXP); 
-		    print_exec " }\n"; 
+	| IT EXP IT (printList ["\\textit{ ", EXP, " }\n" ]; 
 		    SOME EXP)
-	| IT ASPAS EXP ASPAS IT (print_exec "\\textit{ ``";
-		    print_exec (EXP); 
-		    print_exec " ''}\n"; 
+	| IT ASPAS EXP ASPAS IT (printList ["\\textit{ ``", EXP, " ''}\n"]; 
 		    SOME EXP)
-	| IT EXP ASPAS EXP ASPAS IT (print_exec "\\textit{ ";
-		    print_exec (EXP1);
-		    print_exec "``";
-		    print_exec (EXP2); 
-		    print_exec " ''}\n"; 
+	| IT EXP ASPAS EXP ASPAS IT (printList ["\\textit{ ", EXP1, "``", EXP2, " ''}\n"]; 
 		    SOME EXP)
-	| IT ASPAS EXP ASPAS EXP IT (print_exec "\\textit{ ``";
-		    print_exec (EXP1); 
-		    print_exec "''";
-		    print_exec (EXP2);
-		    print_exec " }\n"; 
+	| IT ASPAS EXP ASPAS EXP IT (printList ["\\textit{ ``", EXP1, "''", EXP2, " }\n"]; 
 		    SOME EXP)
-	| IT EXP ASPAS EXP ASPAS EXP IT (print_exec "\\textit{";
-		    print_exec (EXP1); 
-		    print_exec "``";
-		    print_exec (EXP2);
-		    print_exec "''";
-		    print_exec (EXP3);
-		    print_exec " }\n"; 
+	| IT EXP ASPAS EXP ASPAS EXP IT (printList ["\\textit{", EXP1, "``", EXP2, "''", EXP3, " }\n"]; 
 		    SOME EXP)
-	| NEG EXP NEG (print_exec "\\textbf{ ";
-		    print_exec (EXP); 
-		    print_exec " }\n"; 
+	| NEG EXP NEG (printList ["\\textbf{ ", EXP, " }\n"]; 
 		    SOME EXP)
-	| NEG ASPAS EXP ASPAS NEG (print_exec "\\textbf{ ``";
-		    print_exec (EXP); 
-		    print_exec "'' }\n"; 
+	| NEG ASPAS EXP ASPAS NEG (printList ["\\textbf{ ``", EXP, "'' }\n"]; 
 		    SOME EXP)
-	| NEG EXP ASPAS EXP ASPAS NEG (print_exec "\\textbf{ ";
-	            print_exec (EXP1);
-	            print_exec "``";
-	            print_exec (EXP2);
-		    print_exec "'' }\n"; 
+	| NEG EXP ASPAS EXP ASPAS NEG (printList ["\\textbf{ ", EXP1, "``", EXP2, "'' }\n"]; 
 		    SOME EXP)
-	| NEG ASPAS EXP ASPAS EXP NEG (print_exec "\\textbf{ ``";
-	            print_exec (EXP1);
-	            print_exec "''" ;
-	            print_exec (EXP2);
-		    print_exec "}\n"; 
+	| NEG ASPAS EXP ASPAS EXP NEG (printList ["\\textbf{ ``", EXP1, "''", EXP2, "}\n"]; 
 		    SOME EXP)
-	| NEG EXP ASPAS EXP ASPAS EXP NEG (print_exec "\\textbf{ ";
-	            print_exec (EXP1);
-	            print_exec "``";
-	            print_exec (EXP2);
-	            print_exec "''" ;
-	            print_exec (EXP3);
-		    print_exec "}\n"; 
+	| NEG EXP ASPAS EXP ASPAS EXP NEG (printList ["\\textbf{ ", EXP1, "``", EXP2, "''", EXP3, "}\n"]; 
 		    SOME EXP)
-	| IT NEG EXP NEG IT (print_exec "\\textit{\\textbf{ ";
-		    print_exec (EXP); 
-		    print_exec " }}\n"; 
+	| IT NEG EXP NEG IT (printList ["\\textit{\\textbf{ ", EXP, " }}\n"]; 
 		    SOME EXP)
-	| NEG IT EXP IT NEG(print_exec "\\textbf{\\textit{ ";
-		    print_exec (EXP); 
-		    print_exec " }}\n"; 
+	| NEG IT EXP IT NEG(printList ["\\textbf{\\textit{ ", EXP, " }}\n"]; 
 		    SOME EXP)
-	| ITNEG EXP ITNEG (print_exec "\\textbf{\\textit{ ";
-		    print_exec (EXP); 
-		    print_exec " }}\n"; 
+	| ITNEG EXP ITNEG (printList ["\\textbf{\\textit{ ", EXP, " }}\n"]; 
 		    SOME EXP)
-	| ASPAS EXP ASPAS (print_exec "``";
-		    print_exec (EXP1);
-		    print_exec "''\n";
+	| ASPAS EXP ASPAS (printList ["``", EXP1, "''\n"];
 		    SOME EXP)
- 	| EXP ASPAS EXP ASPAS ( print_exec (EXP1);
-		    print_exec "``";
-		    print_exec (EXP2);
-		    print_exec "''\n";
+ 	| EXP ASPAS EXP ASPAS ( printList [EXP1, "``", EXP2, "''\n"];
 		    SOME EXP)
-	| ASPAS EXP ASPAS EXP (print_exec "``";
-		    print_exec (EXP1);
-		    print_exec "''";
-		    print_exec (EXP2);
-		    print_exec "\n";
+	| ASPAS EXP ASPAS EXP (printList ["``", EXP1, "''", EXP2, "\n"];
 		    SOME EXP)
-	| EXP ASPAS EXP ASPAS EXP ( print_exec (EXP1);
-		    print_exec "``";
-		    print_exec (EXP2);
-		    print_exec "''";
-		    print_exec (EXP3);
-		    print_exec "\n";
+	| EXP ASPAS EXP ASPAS EXP ( printList [EXP1, "``", EXP2, "''", EXP3, "\n"];
 		    SOME EXP)
-	| COMMAND_START EXP (print_exec "\\begin{";
-		    print_exec (EXP);
-		    print_exec "} \n";
+	| COMMAND_START EXP (printList ["\\begin{", EXP, "} \n"];
 		    SOME EXP)
-	| COMMAND_END EXP (print_exec "\\end{";
-		    print_exec (EXP);
-		    print_exec "}\n";
+	| COMMAND_END EXP (printList ["\\end{", EXP, "}\n"];
 		    SOME EXP)
-	| ITENIZE EXP (print_exec "\\item";
-		    print_exec (EXP);
-		    print_exec "\n";
+	| ITENIZE EXP (printList ["\\item", EXP, "\n"];
 		    SOME EXP)
-	
-        | (NONE)
+     (NONE)
   EXP  : TXT             (TXT)
