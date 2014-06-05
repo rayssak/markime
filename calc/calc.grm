@@ -94,6 +94,14 @@ fun print_exec(txt: string) =
 	            print_exec (EXP3);
 		    print_exec "}\n"; 
 		    SOME EXP)
+	| IT NEG EXP NEG IT (print_exec "\\textit{\\textbf{ ";
+		    print_exec (EXP); 
+		    print_exec " }}\n"; 
+		    SOME EXP)
+	| NEG IT EXP IT NEG(print_exec "\\textbf{\\textit{ ";
+		    print_exec (EXP); 
+		    print_exec " }}\n"; 
+		    SOME EXP)
 	| ASPAS EXP ASPAS (print_exec "``";
 		    print_exec (EXP1);
 		    print_exec "''\n";

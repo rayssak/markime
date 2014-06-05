@@ -17,6 +17,11 @@ naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que t
 *"italico com aspas"*
 *"aspas" palavra a direita*
 *esquerda "meio aspas" direita*
+
+deixar possivel utilizar as duas formas
+* ** italico e negrito** *
+** *negrito e italico* **
+
 **negrito**
 **"negrito com aspas"**
 **esquerda "aspas"**
