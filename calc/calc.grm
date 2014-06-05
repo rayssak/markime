@@ -24,8 +24,7 @@ fun printList ([]:string list) = print_exec ""
 %pos int
 
 
-%term IT | NEG | ITNEG | LINK | ASPAS | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string
-	  | CONCAT
+%term IT | NEG | ITNEG | LINK | ASPAS | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string | CONCAT
 %nonterm EXP of string | START of string option 
 
 %name Markime
@@ -43,23 +42,23 @@ fun printList ([]:string list) = print_exec ""
 		    SOME EXP )
 	| IT EXP IT (printList ["\\textit{ ", EXP, " }\n" ]; 
 		    SOME EXP)
-	| IT ASPAS EXP ASPAS IT (printList ["\\textit{ ``", EXP, " ''}\n"]; 
+	| IT ASPAS EXP ASPAS IT (printList ["\\textit{ ''", EXP, " ''}\n"]; 
 		    SOME EXP)
-	| IT EXP ASPAS EXP ASPAS IT (printList ["\\textit{ ", EXP1, "``", EXP2, " ''}\n"]; 
+	| IT EXP ASPAS EXP ASPAS IT (printList ["\\textit{ ", EXP1, "''", EXP2, " ''}\n"]; 
 		    SOME EXP)
-	| IT ASPAS EXP ASPAS EXP IT (printList ["\\textit{ ``", EXP1, "''", EXP2, " }\n"]; 
+	| IT ASPAS EXP ASPAS EXP IT (printList ["\\textit{ ''", EXP1, "''", EXP2, " }\n"]; 
 		    SOME EXP)
-	| IT EXP ASPAS EXP ASPAS EXP IT (printList ["\\textit{", EXP1, "``", EXP2, "''", EXP3, " }\n"]; 
+	| IT EXP ASPAS EXP ASPAS EXP IT (printList ["\\textit{", EXP1, "''", EXP2, "''", EXP3, " }\n"]; 
 		    SOME EXP)
 	| NEG EXP NEG (printList ["\\textbf{ ", EXP, " }\n"]; 
 		    SOME EXP)
-	| NEG ASPAS EXP ASPAS NEG (printList ["\\textbf{ ``", EXP, "'' }\n"]; 
+	| NEG ASPAS EXP ASPAS NEG (printList ["\\textbf{ ''", EXP, "'' }\n"]; 
 		    SOME EXP)
-	| NEG EXP ASPAS EXP ASPAS NEG (printList ["\\textbf{ ", EXP1, "``", EXP2, "'' }\n"]; 
+	| NEG EXP ASPAS EXP ASPAS NEG (printList ["\\textbf{ ", EXP1, "''", EXP2, "'' }\n"]; 
 		    SOME EXP)
-	| NEG ASPAS EXP ASPAS EXP NEG (printList ["\\textbf{ ``", EXP1, "''", EXP2, "}\n"]; 
+	| NEG ASPAS EXP ASPAS EXP NEG (printList ["\\textbf{ ''", EXP1, "''", EXP2, "}\n"]; 
 		    SOME EXP)
-	| NEG EXP ASPAS EXP ASPAS EXP NEG (printList ["\\textbf{ ", EXP1, "``", EXP2, "''", EXP3, "}\n"]; 
+	| NEG EXP ASPAS EXP ASPAS EXP NEG (printList ["\\textbf{ ", EXP1, "`''", EXP2, "''", EXP3, "}\n"]; 
 		    SOME EXP)
 	| IT NEG EXP NEG IT (printList ["\\textit{\\textbf{ ", EXP, " }}\n"]; 
 		    SOME EXP)
@@ -67,39 +66,39 @@ fun printList ([]:string list) = print_exec ""
 		    SOME EXP)
 	| ITNEG EXP ITNEG (printList ["\\textbf{\\textit{ ", EXP, " }}\n"]; 
 		    SOME EXP)
-	| IT NEG ASPAS EXP ASPAS EXP NEG IT (printList ["\\textit{\\textbf{``", EXP1, "''", EXP2, " }}\n"]; 
+	| IT NEG ASPAS EXP ASPAS EXP NEG IT (printList ["\\textit{\\textbf{''", EXP1, "''", EXP2, " }}\n"]; 
 		    SOME EXP)
-	| IT NEG EXP ASPAS EXP ASPAS NEG IT (printList ["\\textit{\\textbf{", EXP1, "``", EXP2, " '' }}\n"]; 
+	| IT NEG EXP ASPAS EXP ASPAS NEG IT (printList ["\\textit{\\textbf{", EXP1, "''", EXP2, " '' }}\n"]; 
 		    SOME EXP)
-	| IT NEG EXP  ASPAS EXP ASPAS EXP NEG IT (printList ["\\textit{\\textbf{", EXP1, "``", EXP2, "''", EXP3, "}}\n"]; 
+	| IT NEG EXP  ASPAS EXP ASPAS EXP NEG IT (printList ["\\textit{\\textbf{", EXP1, "''", EXP2, "''", EXP3, "}}\n"]; 
 		    SOME EXP)
-	| IT NEG ASPAS EXP ASPAS EXP ASPAS EXP ASPAS NEG IT (printList ["\\textit{\\textbf{ ``", EXP1, "''", EXP2, "``", EXP3, " ''}}\n"]; 
+	| IT NEG ASPAS EXP ASPAS EXP ASPAS EXP ASPAS NEG IT (printList ["\\textit{\\textbf{ ''", EXP1, "''", EXP2, "''", EXP3, " ''}}\n"]; 
 		    SOME EXP)
-	| NEG IT ASPAS EXP ASPAS EXP IT NEG (printList ["\\textit{\\textbf{``", EXP1, "''", EXP2, " }}\n"]; 
+	| NEG IT ASPAS EXP ASPAS EXP IT NEG (printList ["\\textit{\\textbf{''", EXP1, "''", EXP2, " }}\n"]; 
 		    SOME EXP)
-	| NEG IT EXP ASPAS EXP ASPAS IT NEG (printList ["\\textit{\\textbf{", EXP1, "``", EXP2, " '' }}\n"]; 
+	| NEG IT EXP ASPAS EXP ASPAS IT NEG (printList ["\\textit{\\textbf{", EXP1, "''", EXP2, " '' }}\n"]; 
 		    SOME EXP)
-	| NEG IT EXP  ASPAS EXP ASPAS EXP IT NEG (printList ["\\textit{\\textbf{", EXP1, "``", EXP2, "''", EXP3, "}}\n"]; 
+	| NEG IT EXP  ASPAS EXP ASPAS EXP IT NEG (printList ["\\textit{\\textbf{", EXP1, "''", EXP2, "''", EXP3, "}}\n"]; 
 		    SOME EXP)
-	| NEG IT ASPAS EXP ASPAS EXP ASPAS EXP ASPAS IT NEG (printList ["\\textit{\\textbf{ ``", EXP1, "''", EXP2, "``", EXP3, " ''}}\n"]; 
+	| NEG IT ASPAS EXP ASPAS EXP ASPAS EXP ASPAS IT NEG (printList ["\\textit{\\textbf{ ''", EXP1, "''", EXP2, "''", EXP3, " ''}}\n"]; 
 		    SOME EXP)
-	| ITNEG ASPAS EXP ASPAS EXP ITNEG (printList ["\\textit{\\textbf{``", EXP1, "''", EXP2, " }}\n"]; 
+	| ITNEG ASPAS EXP ASPAS EXP ITNEG (printList ["\\textit{\\textbf{''", EXP1, "''", EXP2, " }}\n"]; 
 		    SOME EXP)
-	| ITNEG EXP ASPAS EXP ASPAS ITNEG (printList ["\\textit{\\textbf{", EXP1, "``", EXP2, " '' }}\n"]; 
+	| ITNEG EXP ASPAS EXP ASPAS ITNEG (printList ["\\textit{\\textbf{", EXP1, "''", EXP2, " '' }}\n"]; 
 		    SOME EXP)
-	| ITNEG EXP  ASPAS EXP ASPAS EXP ITNEG (printList ["\\textit{\\textbf{", EXP1, "``", EXP2, "''", EXP3, "}}\n"]; 
+	| ITNEG EXP  ASPAS EXP ASPAS EXP ITNEG (printList ["\\textit{\\textbf{", EXP1, "''", EXP2, "''", EXP3, "}}\n"]; 
 		    SOME EXP)
-	| ITNEG ASPAS EXP ASPAS EXP ASPAS EXP ASPAS ITNEG (printList ["\\textit{\\textbf{ ``", EXP1, "''", EXP2, "``", EXP3, " ''}}\n"]; 
+	| ITNEG ASPAS EXP ASPAS EXP ASPAS EXP ASPAS ITNEG (printList ["\\textit{\\textbf{ ''", EXP1, "''", EXP2, "''", EXP3, " ''}}\n"]; 
 		    SOME EXP)
-	| ASPAS EXP ASPAS (printList ["``", EXP1, "''\n"];
+	| ASPAS EXP ASPAS (printList ["''", EXP1, "''\n"];
 		    SOME EXP)
- 	| EXP ASPAS EXP ASPAS ( printList [EXP1, "``", EXP2, "''\n"];
+ 	| EXP ASPAS EXP ASPAS ( printList [EXP1, "''", EXP2, "''\n"];
 		    SOME EXP)
-	| ASPAS EXP ASPAS EXP (printList ["``", EXP1, "''", EXP2, "\n"];
+	| ASPAS EXP ASPAS EXP (printList ["''", EXP1, "''", EXP2, "\n"];
 		    SOME EXP)
-	| EXP ASPAS EXP ASPAS EXP ( printList [EXP1, "``", EXP2, "''", EXP3, "\n"];
+	| EXP ASPAS EXP ASPAS EXP ( printList [EXP1, "''", EXP2, "''", EXP3, "\n"];
 		    SOME EXP)
-	| ASPAS EXP ASPAS EXP ASPAS EXP ASPAS ( printList ["``", EXP1, "''", EXP2, "``", EXP3, "'' \n"];
+	| ASPAS EXP ASPAS EXP ASPAS EXP ASPAS ( printList ["''", EXP1, "''", EXP2, "''", EXP3, "'' \n"];
 		    SOME EXP)
 	| COMMAND_START EXP (printList ["\\begin{", EXP, "} \n"];
 		    SOME EXP)
@@ -107,7 +106,7 @@ fun printList ([]:string list) = print_exec ""
 		    SOME EXP)
 	| ITENIZE EXP (printList ["\\item", EXP, "\n"];
 		    SOME EXP)
-	|EXP CONCAT EXP (printList [EXP1,EXP2];
+	| EXP CONCAT EXP (printList [EXP1,EXP2];
 		    SOME EXP)
-     (NONE)
+     	| (NONE)
   EXP  : TXT             (TXT)
