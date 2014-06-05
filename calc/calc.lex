@@ -16,7 +16,7 @@ fun error (e,l, k) = TextIO.output (TextIO.stdOut, String.concat[
 %header (functor MarkimeLexFun(structure Tokens: Markime_TOKENS));
 digit= [0-9];
 alpha= [ A-Za-z];
-special=[\,\.\;\:\~\^\!\?];
+special=[\+\,\.\;\:\~\^\!\?];
 alls = {alpha}|{digit}|{special};
 bad_words = [shit|shot |shit |shot];
 
