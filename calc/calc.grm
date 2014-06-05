@@ -25,6 +25,7 @@ fun printList ([]:string list) = print_exec ""
 
 
 %term IT | NEG | ITNEG | LINK | ASPAS | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string
+	  | CONCAT
 %nonterm EXP of string | START of string option 
 
 %name Markime
@@ -98,11 +99,15 @@ fun printList ([]:string list) = print_exec ""
 		    SOME EXP)
 	| EXP ASPAS EXP ASPAS EXP ( printList [EXP1, "``", EXP2, "''", EXP3, "\n"];
 		    SOME EXP)
+	| ASPAS EXP ASPAS EXP ASPAS EXP ASPAS ( printList ["``", EXP1, "''", EXP2, "``", EXP3, "'' \n"];
+		    SOME EXP)
 	| COMMAND_START EXP (printList ["\\begin{", EXP, "} \n"];
 		    SOME EXP)
 	| COMMAND_END EXP (printList ["\\end{", EXP, "}\n"];
 		    SOME EXP)
 	| ITENIZE EXP (printList ["\\item", EXP, "\n"];
+		    SOME EXP)
+	|EXP CONCAT EXP (printList [EXP1,EXP2];
 		    SOME EXP)
      (NONE)
   EXP  : TXT             (TXT)

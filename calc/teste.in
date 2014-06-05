@@ -23,11 +23,22 @@ deixar possivel utilizar as duas formas
 ** *negrito e italico* **
 ***terceira forma de escrever italico e negrito***
 
-**negrito**
-**"negrito com aspas"**
-**esquerda "aspas"**
-**"aspas" direita**
-**esquerda "aspas" direita**
+* ** "esquerda aspas" expressao ** *
+* ** expressao "direita aspas"** *
+* ** "esquerda aspas" expressao "direita aspas"** *
+* ** esquerda "aspas" direita** *
+
+** * "esquerda aspas" expressao * **
+** * expressao "direita aspas" * **
+** * "esquerda aspas" expressao "direita aspas" * **
+** * esquerda "aspas" direita * **
+
+
+*** "esquerda aspas" expressao ***
+*** expressao "direita aspas" ***
+*** "esquerda aspas" expressao "direita aspas" ***
+*** esquerda "aspas" direita ***
+
 ultima linha
 "aspas"
 "aspas" palavra a direita
