@@ -14,8 +14,10 @@ fun error (e,l, k) = TextIO.output (TextIO.stdOut, String.concat[
 %%
 
 %header (functor MarkimeLexFun(structure Tokens: Markime_TOKENS));
-alpha=[ \+\,\.0-9A-Za-z];
-
+digit= [0-9];
+alpha= [ A-Za-z];
+special=[\+\,\.\;\:\~\^\!\?];
+alls = {alpha}|{digit}|{special};
 bad_words = [shit|shot |shit |shot];
 
 ws = [\t];
@@ -40,7 +42,7 @@ ws = [\t];
 <DEFAULT>"[link]"	=> (Tokens.LINK(!pos,!pos));
 <DEFAULT>"\""	        => (Tokens.ASPAS(!pos,!pos));
 <DEFAULT>\n		=> (Tokens.SEMI(!pos,!pos));
-<DEFAULT>{alpha}+	=> (Tokens.TXT(yytext,!pos,!pos));
+<DEFAULT>{alls}+	=> (Tokens.TXT(yytext,!pos,!pos));
 
 <COMMENT>\n		=> (YYBEGIN DEFAULT; continue ());
 <COMMENT>.		=> (continue ());
