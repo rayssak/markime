@@ -36,6 +36,7 @@ ws = [\t];
 <DEFAULT>"##"		=> (Tokens.COMMAND_END(!pos,!pos));
 <DEFAULT>"*"		=> (Tokens.IT(!pos,!pos));
 <DEFAULT>"**"		=> (Tokens.NEG(!pos,!pos));
+<DEFAULT>"***"		=> (Tokens.ITNEG(!pos,!pos));
 <DEFAULT>"("		=> (Tokens.PAR_OPEN(!pos,!pos));
 <DEFAULT>")"		=> (Tokens.PAR_CLOSE(!pos,!pos));
 <DEFAULT>"\\it"		=> (Tokens.ITENIZE(!pos,!pos));
