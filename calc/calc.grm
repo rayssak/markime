@@ -19,7 +19,7 @@ fun print_exec(txt: string) =
 %pos int
 
 
-%term IT | NEG | LINK | ASPAS | SEMI | PAR_OPEN | PAR_CLOSE | EOF | TXT of string
+%term IT | NEG | LINK | ASPAS | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string
 %nonterm EXP of string | START of string option 
 
 %name Markime
@@ -48,7 +48,19 @@ fun print_exec(txt: string) =
 		    SOME EXP)
 	| ASPAS EXP ASPAS (print_exec "''";
 		    print_exec (EXP);
-		    print_exec "''";
+		    print_exec "''\n";
+		    SOME EXP)
+	| COMMAND_START EXP (print_exec "\\begin{";
+		    print_exec (EXP);
+		    print_exec "} \n";
+		    SOME EXP)
+	| COMMAND_END EXP (print_exec "\\end{";
+		    print_exec (EXP);
+		    print_exec "}\n";
+		    SOME EXP)
+	| ITENIZE EXP (print_exec "\\item";
+		    print_exec (EXP);
+		    print_exec "\n";
 		    SOME EXP)
 	
         | (NONE)

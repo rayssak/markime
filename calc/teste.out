@@ -4,8 +4,12 @@
 \usepackage[pdftex]{graphicx}  
 \graphicspath{{figures/}}  
 
+\begin{document} 
 primeira linha 
 [ linkteste.com.br ] {linkteste.com.br}
+\begin{equation} 
+1 + 2
+\end{equation}
 blabla dfjasldkj sdfks
 teste novo
 bogus 
@@ -15,3 +19,8 @@ textit{ italico }
 textbf{ negrito }
 ultima linha
 ''aspas''
+\begin{enumerate} 
+\item teste 1
+\item teste 2
+\end{enumerate}
+\end{document }

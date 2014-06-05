@@ -1,5 +1,10 @@
- primeira linha 
+ #document
+//o primeiro caracter do texto está sendo lido automaticamente pelo arquivo (por isso esse espaço em branco, depois podemos ver isso )
+primeira linha 
 [link] (linkteste.com.br)
+#equation
+1 + 2
+##equation
 blabla dfjasldkj sdfks
 teste novo
 //azul
@@ -12,3 +17,8 @@ naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que t
 **negrito**
 ultima linha
 "aspas"
+#enumerate
+\it teste 1
+\it teste 2
+##enumerate
+##document 
