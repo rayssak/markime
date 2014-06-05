@@ -13,7 +13,7 @@ fun error (e,l, k) = TextIO.output (TextIO.stdOut, String.concat[
 
 %%
 
-%header (functor CalcLexFun(structure Tokens: Calc_TOKENS));
+%header (functor MarkimeLexFun(structure Tokens: Markime_TOKENS));
 alpha=[ \,\.0-9A-Za-z];
 
 bad_words = ["shit|shot |shit |shot "];
@@ -34,12 +34,9 @@ ws = [\t];
 <DEFAULT>"**"		=> (Tokens.NEG(!pos,!pos));
 <DEFAULT>"("		=> (Tokens.PAR_OPEN(!pos,!pos));
 <DEFAULT>")"		=> (Tokens.PAR_CLOSE(!pos,!pos));
-<DEFAULT>"+"		=> (Tokens.LINK(!pos,!pos));
+<DEFAULT>"[link]"	=> (Tokens.LINK(!pos,!pos));
 <DEFAULT>\n		=> (Tokens.SEMI(!pos,!pos));
-<DEFAULT>{alpha}+	=> (if yytext="print"
-			      then Tokens.PRINT(!pos,!pos)
-			    else Tokens.TXT(yytext,!pos,!pos)
-			    );
+<DEFAULT>{alpha}+	=> (Tokens.TXT(yytext,!pos,!pos));
 
 <COMMENT>\n		=> (YYBEGIN DEFAULT; continue ());
 <COMMENT>.		=> (continue ());

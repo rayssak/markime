@@ -1,12 +1,12 @@
 Cabeçalho latex com imports uteis, encoding, etc 
 
-primeira linha   
-linkteste.com.br  
-blabla dfjasldkj sdfks  
-teste novo  
-bogus   
-blabla72  
-naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista  
-italico  
-negrito  
-ultima linha  
+primeira linha 
+[ linkteste.com.br ] {linkteste.com.br}
+blabla dfjasldkj sdfks
+teste novo
+bogus 
+blabla72
+naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista
+textit{ italico }
+textbf{ negrito }
+ultima linha

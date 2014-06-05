@@ -1,5 +1,5 @@
  primeira linha 
-+ (linkteste.com.br)
+[link] (linkteste.com.br)
 blabla dfjasldkj sdfks
 teste novo
 //azul
@@ -11,3 +11,4 @@ naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que t
 *italico*
 **negrito**
 ultima linha
+

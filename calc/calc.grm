@@ -1,4 +1,14 @@
-(* Sample interactive calculator for ML-Yacc *)
+(* Sample latex-translator for ML-Yacc *)
+
+fun print_exec(txt: string) =
+  let
+    val outs = TextIO.openAppend "teste.out"
+    fun helper(txt_aux: string) =
+          (TextIO.output(outs,txt_aux); TextIO.closeOut outs)
+  in
+    helper(txt)
+  end
+
 %%
 
 %eop EOF SEMI
@@ -8,13 +18,11 @@
 
 %pos int
 
-%term IT | NEG | PRINT | LINK |
+%term IT | NEG | LINK |
       SEMI | PAR_OPEN | PAR_CLOSE | EOF | TXT of string
-%nonterm EXP of string | START of string option
+%nonterm EXP of string | START of string option 
 
-%name Calc
-
-%keyword PRINT SEMI
+%name Markime
 
 %noshift EOF
 %verbose
@@ -23,22 +31,21 @@
 (* the parser returns the value associated with the expression *)
 
   START :
-        PRINT EXP (SOME EXP)
-	| EXP (SOME EXP) 
-	| LINK PAR_OPEN EXP PAR_CLOSE (print "[ ";
-		    print (EXP); 
-		    print " ] {";
-		    print (EXP);
-		    print "}";
+        EXP (print_exec (EXP); print_exec "\n"; SOME EXP) 
+	| LINK PAR_OPEN EXP PAR_CLOSE (print_exec "[ ";
+		    print_exec (EXP); 
+		    print_exec " ] {";
+		    print_exec (EXP);
+		    print_exec "}\n";
 		    SOME EXP )
-	| IT EXP IT (print "textit{ ";
-		    print (EXP); 
-		    print " } "; 
+	| IT EXP IT (print_exec "textit{ ";
+		    print_exec (EXP); 
+		    print_exec " }\n"; 
 		    SOME EXP)
-	| NEG EXP NEG (print "textbf{ ";
-		    print (EXP); 
-		    print " } "; 
+	| NEG EXP NEG (print_exec "textbf{ ";
+		    print_exec (EXP); 
+		    print_exec " }\n"; 
 		    SOME EXP)
 	
         | (NONE)
-  EXP : TXT             (TXT)
+  EXP  : TXT             (TXT)
