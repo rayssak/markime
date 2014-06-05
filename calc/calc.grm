@@ -46,9 +46,27 @@ fun print_exec(txt: string) =
 		    print_exec (EXP); 
 		    print_exec " }\n"; 
 		    SOME EXP)
-	| ASPAS EXP ASPAS (print_exec "''";
-		    print_exec (EXP);
+	| ASPAS EXP ASPAS (print_exec "``";
+		    print_exec (EXP1);
 		    print_exec "''\n";
+		    SOME EXP)
+ 	| EXP ASPAS EXP ASPAS ( print_exec (EXP1);
+		    print_exec "``";
+		    print_exec (EXP2);
+		    print_exec "''\n";
+		    SOME EXP)
+	| ASPAS EXP ASPAS EXP (print_exec "``";
+		    print_exec (EXP1);
+		    print_exec "''";
+		    print_exec (EXP2);
+		    print_exec "\n";
+		    SOME EXP)
+	| EXP ASPAS EXP ASPAS EXP ( print_exec (EXP1);
+		    print_exec "``";
+		    print_exec (EXP2);
+		    print_exec "''";
+		    print_exec (EXP3);
+		    print_exec "\n";
 		    SOME EXP)
 	| COMMAND_START EXP (print_exec "\\begin{";
 		    print_exec (EXP);
