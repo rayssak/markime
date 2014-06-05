@@ -14,9 +14,20 @@ blabla72
 //aeeeeeeeeeeeeeeeeeeeeeeeee
 naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista
 *italico*
+*"italico com aspas"*
+*"aspas" palavra a direita*
+*esquerda "meio aspas" direita*
 **negrito**
+**"negrito com aspas"**
+**esquerda "aspas"**
+**"aspas" direita**
+**esquerda "aspas" direita**
 ultima linha
 "aspas"
+"aspas" palavra a direita
+palavra a esquerda "aspas"
+"aspas"
+palavra a esquerda "sdasd" palavra a direita
 #enumerate
 \it teste 1
 \it teste 2

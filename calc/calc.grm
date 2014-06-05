@@ -38,13 +38,61 @@ fun print_exec(txt: string) =
 		    print_exec (EXP);
 		    print_exec "}\n";
 		    SOME EXP )
-	| IT EXP IT (print_exec "textit{ ";
+	| IT EXP IT (print_exec "\\textit{ ";
 		    print_exec (EXP); 
 		    print_exec " }\n"; 
 		    SOME EXP)
-	| NEG EXP NEG (print_exec "textbf{ ";
+	| IT ASPAS EXP ASPAS IT (print_exec "\\textit{ ``";
+		    print_exec (EXP); 
+		    print_exec " ''}\n"; 
+		    SOME EXP)
+	| IT EXP ASPAS EXP ASPAS IT (print_exec "\\textit{ ";
+		    print_exec (EXP1);
+		    print_exec "``";
+		    print_exec (EXP2); 
+		    print_exec " ''}\n"; 
+		    SOME EXP)
+	| IT ASPAS EXP ASPAS EXP IT (print_exec "\\textit{ ``";
+		    print_exec (EXP1); 
+		    print_exec "''";
+		    print_exec (EXP2);
+		    print_exec " }\n"; 
+		    SOME EXP)
+	| IT EXP ASPAS EXP ASPAS EXP IT (print_exec "\\textit{";
+		    print_exec (EXP1); 
+		    print_exec "``";
+		    print_exec (EXP2);
+		    print_exec "''";
+		    print_exec (EXP3);
+		    print_exec " }\n"; 
+		    SOME EXP)
+	| NEG EXP NEG (print_exec "\\textbf{ ";
 		    print_exec (EXP); 
 		    print_exec " }\n"; 
+		    SOME EXP)
+	| NEG ASPAS EXP ASPAS NEG (print_exec "\\textbf{ ``";
+		    print_exec (EXP); 
+		    print_exec "'' }\n"; 
+		    SOME EXP)
+	| NEG EXP ASPAS EXP ASPAS NEG (print_exec "\\textbf{ ";
+	            print_exec (EXP1);
+	            print_exec "``";
+	            print_exec (EXP2);
+		    print_exec "'' }\n"; 
+		    SOME EXP)
+	| NEG ASPAS EXP ASPAS EXP NEG (print_exec "\\textbf{ ``";
+	            print_exec (EXP1);
+	            print_exec "''" ;
+	            print_exec (EXP2);
+		    print_exec "}\n"; 
+		    SOME EXP)
+	| NEG EXP ASPAS EXP ASPAS EXP NEG (print_exec "\\textbf{ ";
+	            print_exec (EXP1);
+	            print_exec "``";
+	            print_exec (EXP2);
+	            print_exec "''" ;
+	            print_exec (EXP3);
+		    print_exec "}\n"; 
 		    SOME EXP)
 	| ASPAS EXP ASPAS (print_exec "``";
 		    print_exec (EXP1);
