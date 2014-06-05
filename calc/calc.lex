@@ -14,7 +14,7 @@ fun error (e,l, k) = TextIO.output (TextIO.stdOut, String.concat[
 %%
 
 %header (functor MarkimeLexFun(structure Tokens: Markime_TOKENS));
-alpha=[ \,\.0-9A-Za-z];
+alpha=[ \+\,\.0-9A-Za-z];
 
 bad_words = [shit|shot |shit |shot];
 
@@ -27,13 +27,16 @@ ws = [\t];
 <DEFAULT>"//"		=> (YYBEGIN COMMENT; continue ());
 <DEFAULT>{ws}+		=> (lex());
 
-<DEFAULT>{bad_words}+ => (error ("ignoring bad words "^yytext,!pos,!pos);
+<DEFAULT>{bad_words}+   => (error ("ignoring bad words "^yytext,!pos,!pos);
              lex()); 
 
+<DEFAULT>"#"		=> (Tokens.COMMAND_START(!pos,!pos));
+<DEFAULT>"##"		=> (Tokens.COMMAND_END(!pos,!pos));
 <DEFAULT>"*"		=> (Tokens.IT(!pos,!pos));
 <DEFAULT>"**"		=> (Tokens.NEG(!pos,!pos));
 <DEFAULT>"("		=> (Tokens.PAR_OPEN(!pos,!pos));
 <DEFAULT>")"		=> (Tokens.PAR_CLOSE(!pos,!pos));
+<DEFAULT>"\\it"		=> (Tokens.ITENIZE(!pos,!pos));
 <DEFAULT>"[link]"	=> (Tokens.LINK(!pos,!pos));
 <DEFAULT>"\""	        => (Tokens.ASPAS(!pos,!pos));
 <DEFAULT>\n		=> (Tokens.SEMI(!pos,!pos));
