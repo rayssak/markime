@@ -18,8 +18,8 @@ fun print_exec(txt: string) =
 
 %pos int
 
-%term IT | NEG | LINK |
-      SEMI | PAR_OPEN | PAR_CLOSE | EOF | TXT of string
+
+%term IT | NEG | LINK | ASPAS | SEMI | PAR_OPEN | PAR_CLOSE | EOF | TXT of string
 %nonterm EXP of string | START of string option 
 
 %name Markime
@@ -45,6 +45,10 @@ fun print_exec(txt: string) =
 	| NEG EXP NEG (print_exec "textbf{ ";
 		    print_exec (EXP); 
 		    print_exec " }\n"; 
+		    SOME EXP)
+	| ASPAS EXP ASPAS (print_exec "''";
+		    print_exec (EXP);
+		    print_exec "''";
 		    SOME EXP)
 	
         | (NONE)
