@@ -26,7 +26,7 @@ ws = [\t];
 
 %%
 
-<INITIAL>		=> (YYBEGIN DEFAULT; continue ());
+<INITIAL>{blank}*	=> (YYBEGIN DEFAULT; continue ());
 <DEFAULT>"//"		=> (YYBEGIN COMMENT; continue ());
 <DEFAULT>{ws}+		=> (lex());
 

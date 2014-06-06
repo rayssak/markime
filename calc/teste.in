@@ -1,46 +1,41 @@
- #document
-//o primeiro caracter do texto está sendo lido automaticamente pelo arquivo (por isso esse espaço em branco, depois podemos ver isso )
-primeira linha 
-[link] (linkteste.com.br)
-#equation
-	1 + 2
-##equation
-blabla dfjasldkj sdfks
-teste novo
-//azul
-bogus 
-//abacate
-blabla72
-//aeeeeeeeeeeeeeeeeeeeeeeeee
-naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista
-*italico*
-*"italico com aspas"*
-//*palavra a esquerda "aspas"*
-//*"aspas" palavra a direita*
-//*esquerda "meio aspas" direita*
+#document
+	primeira linha 
+	[link] (linkteste.com.br)
 
-**negrito**
-**"negrito com aspas"**
+	#equation
+		1 + 2
+	##equation
+	blabla dfjasldkj sdfks
+	teste novo
 
-deixar possivel utilizar as duas formas
-* ** italico e negrito** *
-** *negrito e italico* **
-***terceira forma de escrever italico e negrito***
+	//azul
+	blabla72
+	naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista
+	*italico*
+	*"italico com aspas"*
+	//*palavra a esquerda "aspas"*
+	//*"aspas" palavra a direita*
+	//*esquerda "meio aspas" direita*
 
-//*** "esquerda aspas" expressao ***
-//*** expressao "direita aspas" ***
-//*** "esquerda aspas" expressao "direita aspas" ***
-//*** esquerda "aspas" direita ***
+	**negrito**
+	**"negrito com aspas"**
 
-ultima linha
-print a 
+	deixar possivel utilizar as duas formas
+	* ** italico e negrito** *
+	** *negrito e italico* **
+	***terceira forma de escrever italico e negrito***
 
-a+b
+	//*** "esquerda aspas" expressao ***
+	//*** expressao "direita aspas" ***
+	//*** "esquerda aspas" expressao "direita aspas" ***
+	//*** esquerda "aspas" direita ***
 
-"aspas" 
+	a+b
 
-#enumerate
-	\it teste 1
-	\it teste 2
-##enumerate
+	"aspas" 
+
+	#enumerate
+		\it teste 1
+		\it teste 2
+	##enumerate
 ##document
