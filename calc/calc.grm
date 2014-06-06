@@ -44,7 +44,7 @@ fun printList ([]:string list) = print_exec ""
       | IT EXP IT("\\textit{ "^EXP^" }")
       | NEG EXP NEG("\\textbf{ "^EXP^" }")
       | ITNEG EXP ITNEG ("\\textbf{\\textit{ "^EXP^" }}")
-      | ASPAS EXP ASPAS ("``"^EXP1^"''")
+      | ASPAS EXP ASPAS ("''"^EXP1^"''")
       | COMMAND_END EXP ("\\end{"^EXP^"}")
       | ITENIZE EXP ("\\item"^EXP)
       | EXP CONCAT EXP (EXP1^EXP2)
