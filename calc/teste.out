@@ -16,33 +16,19 @@ bogus
 blabla72
 naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista
 \textit{ italico }
-\textit{ ''italico com aspas ''}
-\textit{ ''aspas'' palavra a direita }
-\textit{esquerda ''meio aspas'' direita }
+\textit{ ''italico com aspas'' }
+\textbf{ negrito }
+\textbf{ ''negrito com aspas'' }
 deixar possivel utilizar as duas formas
-\textit{\textbf{  italico e negrito }}
-\textbf{\textit{ negrito e italico }}
+\textit{ \textbf{  italico e negrito } }
+\textbf{ \textit{ negrito e italico } }
 \textbf{\textit{ terceira forma de escrever italico e negrito }}
-\textit{\textbf{''esquerda aspas'' expressao  }}
-\textit{\textbf{ expressao ''direita aspas '' }}
-\textit{\textbf{ ''esquerda aspas'' expressao ''direita aspas ''}}
-\textit{\textbf{ esquerda ''aspas'' direita}}
-\textit{\textbf{''esquerda aspas'' expressao  }}
-\textit{\textbf{ expressao ''direita aspas '' }}
-\textit{\textbf{ ''esquerda aspas'' expressao ''direita aspas ''}}
-\textit{\textbf{ esquerda ''aspas'' direita }}
-\textit{\textbf{''esquerda aspas'' expressao  }}
-\textit{\textbf{ expressao ''direita aspas '' }}
-\textit{\textbf{ ''esquerda aspas'' expressao ''direita aspas ''}}
-\textit{\textbf{ esquerda ''aspas'' direita }}
 ultima linha
+print a 
+a+b
 ''aspas''
-''aspas'' palavra a direita
-palavra a esquerda ''aspas''
-''aspas''
-palavra a esquerda ''sdasd'' palavra a direita
 \begin{enumerate} 
 \item teste 1
 \item teste 2
 \end{enumerate}
-\end{document }
+\end{document}

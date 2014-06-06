@@ -20,6 +20,7 @@ special=[\+\,\.\;\:\~\^\!\?];
 alls = {alpha}|{digit}|{special};
 bad_words = [shit|shot |shit |shot];
 
+blank = [ ];
 ws = [\t];
 %s DEFAULT COMMENT;
 
@@ -32,19 +33,19 @@ ws = [\t];
 <DEFAULT>{bad_words}+   => (error ("ignoring bad words "^yytext,!pos,!pos);
              lex()); 
 
-<DEFAULT>"#"		=> (Tokens.COMMAND_START(!pos,!pos));
-<DEFAULT>"##"		=> (Tokens.COMMAND_END(!pos,!pos));
-<DEFAULT>"*"		=> (Tokens.IT(!pos,!pos));
-<DEFAULT>"**"		=> (Tokens.NEG(!pos,!pos));
-<DEFAULT>"***"		=> (Tokens.ITNEG(!pos,!pos));
-<DEFAULT>"+"		=> (Tokens.CONCAT(!pos,!pos));
-<DEFAULT>"("		=> (Tokens.PAR_OPEN(!pos,!pos));
-<DEFAULT>")"		=> (Tokens.PAR_CLOSE(!pos,!pos));
-<DEFAULT>"\\it"		=> (Tokens.ITENIZE(!pos,!pos));
-<DEFAULT>"[link]"	=> (Tokens.LINK(!pos,!pos));
-<DEFAULT>"\""	        => (Tokens.ASPAS(!pos,!pos));
-<DEFAULT>\n		=> (Tokens.SEMI(!pos,!pos));
-<DEFAULT>{alls}+	=> (Tokens.TXT(yytext,!pos,!pos));
+<DEFAULT>{blank}*"#"		=> (Tokens.COMMAND_START(!pos,!pos));
+<DEFAULT>{blank}*"##"		=> (Tokens.COMMAND_END(!pos,!pos));
+<DEFAULT>{blank}*"*"		=> (Tokens.IT(!pos,!pos));
+<DEFAULT>{blank}*"**"		=> (Tokens.NEG(!pos,!pos));
+<DEFAULT>{blank}*"***"		=> (Tokens.ITNEG(!pos,!pos));
+<DEFAULT>{blank}*"+"		=> (Tokens.CONCAT(!pos,!pos));
+<DEFAULT>{blank}*"("		=> (Tokens.PAR_OPEN(!pos,!pos));
+<DEFAULT>{blank}*")"		=> (Tokens.PAR_CLOSE(!pos,!pos));
+<DEFAULT>{blank}*"\\it"		=> (Tokens.ITENIZE(!pos,!pos));
+<DEFAULT>{blank}*"[link]"	=> (Tokens.LINK(!pos,!pos));
+<DEFAULT>{blank}*"\""	        => (Tokens.ASPAS(!pos,!pos));
+<DEFAULT>\n			=> (Tokens.SEMI(!pos,!pos));
+<DEFAULT>{alls}+		=> (Tokens.TXT(yytext,!pos,!pos));
 
 <COMMENT>\n		=> (YYBEGIN DEFAULT; continue ());
 <COMMENT>.		=> (continue ());

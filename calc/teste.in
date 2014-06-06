@@ -1,9 +1,9 @@
-  #document
+ #document
 //o primeiro caracter do texto está sendo lido automaticamente pelo arquivo (por isso esse espaço em branco, depois podemos ver isso )
 primeira linha 
 [link] (linkteste.com.br)
 #equation
-1 + 2
+	1 + 2
 ##equation
 blabla dfjasldkj sdfks
 teste novo
@@ -27,9 +27,6 @@ deixar possivel utilizar as duas formas
 ** *negrito e italico* **
 ***terceira forma de escrever italico e negrito***
 
-
-
-
 //*** "esquerda aspas" expressao ***
 //*** expressao "direita aspas" ***
 //*** "esquerda aspas" expressao "direita aspas" ***
@@ -40,11 +37,10 @@ print a
 
 a+b
 
-
 "aspas" 
 
 #enumerate
-\it teste 1
-\it teste 2
+	\it teste 1
+	\it teste 2
 ##enumerate
-##document 
+##document
