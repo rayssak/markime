@@ -22,13 +22,14 @@ bad_words = [shit|shot |shit |shot];
 
 blank = [ ];
 ws = [\t];
-%s DEFAULT COMMENT;
+%s DEFAULT COMMENT MATH;
 
 %%
 
-<INITIAL>{blank}*	=> (YYBEGIN DEFAULT; continue ());
-<DEFAULT>"//"		=> (YYBEGIN COMMENT; continue ());
-<DEFAULT>{ws}+		=> (lex());
+<INITIAL>{blank}*		=> (YYBEGIN DEFAULT; continue ());
+<DEFAULT>{blank}*"//"		=> (YYBEGIN COMMENT; continue ());
+<DEFAULT>{blank}*"$$"		=> (YYBEGIN MATH; continue ());
+<DEFAULT>{blank}*{ws}+		=> (lex());
 
 <DEFAULT>{bad_words}+   => (error ("ignoring bad words "^yytext,!pos,!pos);
              lex()); 
@@ -47,5 +48,12 @@ ws = [\t];
 <DEFAULT>\n			=> (Tokens.SEMI(!pos,!pos));
 <DEFAULT>{alls}+		=> (Tokens.TXT(yytext,!pos,!pos));
 
-<COMMENT>\n		=> (YYBEGIN DEFAULT; continue ());
-<COMMENT>.		=> (continue ());
+<COMMENT>\n			=> (YYBEGIN DEFAULT; continue ());
+<COMMENT>.			=> (continue ());
+
+<MATH>{blank}*"$$"		=> (YYBEGIN DEFAULT; continue ());
+<MATH>{blank}*"+"		=> (Tokens.PLUS(!pos,!pos));
+<MATH>{blank}*"*"		=> (Tokens.TIMES(!pos,!pos));
+<MATH>{blank}*"-"		=> (Tokens.SUB(!pos,!pos));
+<MATH>{blank}*"/"		=> (Tokens.DIV(!pos,!pos));
+<MATH>{blank}{digit}+		=> (Tokens.TXT(yytext,!pos,!pos));    

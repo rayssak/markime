@@ -13,7 +13,27 @@ fun printList ([]:string list) = print_exec ""
 	| printList (h::nil:string list) = print_exec h
 	| printList (h::tail:string list) =(print_exec h; printList tail);
 
+fun trim s =
+   let
+       fun trimStart (#" "::t) = trimStart t
+         | trimStart (#"\t"::t) = trimStart t
+         | trimStart l = l
 
+       fun trimEnd (#"#"::t) accum = rev accum
+         | trimEnd (#"\n"::t) accum = rev accum
+         | trimEnd (h::t) accum = trimEnd t (h :: accum)
+         | trimEnd [] accum = rev accum
+   in
+       String.implode (trimEnd (trimStart (String.explode s)) [])
+   end
+
+  fun atoi s = case Int.fromString s of SOME num => num | NONE => 0;
+
+
+  fun plusString (s: string, t: string) = Int.toString(atoi(s) + atoi(t));
+  fun substractString (s: string, t: string) = Int.toString(atoi(s) - atoi(t));
+  fun divideString (s: string, t: string) = Real.toString(Real.fromInt(atoi(s)) / Real.fromInt(atoi(t)));
+  fun multiplyString (s: string, t: string) = Int.toString( atoi(s) * atoi(t) );
 %%
 
 %eop EOF SEMI
@@ -24,10 +44,12 @@ fun printList ([]:string list) = print_exec ""
 %pos int
 
 
-%term IT | NEG | ITNEG | LINK | ASPAS | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string | CONCAT
+%term IT | NEG | ITNEG | LINK | ASPAS | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string | NUM of string | CONCAT | PLUS | SUB | DIV | TIMES
 %nonterm EXP of string | START of string option 
 
 %name Markime
+
+%prefer PLUS TIMES DIV SUB
 
 %noshift EOF
 %verbose
@@ -48,3 +70,9 @@ fun printList ([]:string list) = print_exec ""
       | COMMAND_END EXP ("\\end{"^EXP^"}")
       | ITENIZE EXP ("\\item"^EXP)
       | EXP CONCAT EXP (EXP1^EXP2)
+
+      | EXP PLUS EXP ( plusString( trim(EXP1), trim(EXP2)) )
+      | EXP TIMES EXP ( multiplyString( trim(EXP1), trim(EXP2)) )
+      | EXP DIV EXP ( divideString( trim(EXP1), trim(EXP2)) )
+      | EXP SUB EXP ( substractString( trim(EXP1), trim(EXP2)) )
+
