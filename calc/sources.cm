@@ -2,7 +2,7 @@ Group is
 
   $/basis.cm
   $/ml-yacc-lib.cm
-  calc.grm
-  calc.lex
-  calc.sml
+  markime.grm
+  markime.lex
+  markime.sml
 

@@ -37,7 +37,7 @@ struct
 	
         let
 	    val filenamein   =  "teste.in" : string
-	    val filenameout  =  "teste.out" : string
+	    val filenameout  =  "teste.tex" : string
 	    val inStream     =  TextIO.openIn  filenamein
             val outStream    =  TextIO.openOut filenameout;
 	
