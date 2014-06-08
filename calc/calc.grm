@@ -45,7 +45,7 @@ fun trim s =
 
 
 %term IT | NEG | ITNEG | LINK | ASPAS | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string | NUM of string | CONCAT | PLUS | SUB | DIV | TIMES
-%nonterm EXP of string | START of string option 
+%nonterm EXP of string | START of string option | ASPASNONTERM of string | ITNONTERM of string | NEGNONTERM of string | ITNEGNONTERM of string
 
 %name Markime
 
@@ -60,13 +60,12 @@ fun trim s =
   START : EXP (print_exec(EXP^"\n"); (SOME EXP))
 	| (NONE)
 
-  EXP : TXT (TXT)
+  EXP : ITNONTERM (ITNONTERM)
+      | NEGNONTERM (NEGNONTERM)
+      | ASPASNONTERM (ASPASNONTERM)
       | COMMAND_START EXP ("\\begin{"^EXP^"} ")
       | LINK PAR_OPEN EXP PAR_CLOSE ("[ "^EXP^" ] {"^EXP^"}")
-      | IT EXP IT("\\textit{ "^EXP^" }")
-      | NEG EXP NEG("\\textbf{ "^EXP^" }")
-      | ITNEG EXP ITNEG ("\\textbf{\\textit{ "^EXP^" }}")
-      | ASPAS EXP ASPAS ("''"^EXP1^"''")
+      | ITNEGNONTERM (ITNEGNONTERM)
       | COMMAND_END EXP ("\\end{"^EXP^"}")
       | ITENIZE EXP ("\\item"^EXP)
       | EXP CONCAT EXP (EXP1^EXP2)
@@ -75,4 +74,33 @@ fun trim s =
       | EXP TIMES EXP ( multiplyString( trim(EXP1), trim(EXP2)) )
       | EXP DIV EXP ( divideString( trim(EXP1), trim(EXP2)) )
       | EXP SUB EXP ( substractString( trim(EXP1), trim(EXP2)) )
+      
+      |TXT (TXT)
+      
 
+ITNONTERM :  IT EXP IT("\\textit{ "^EXP1^"}")
+  | IT ASPAS EXP ASPAS IT("\\textit{''"^EXP1^"''}")
+  | IT ASPAS EXP ASPAS EXP IT("\\textit{''"^EXP1^"''"^EXP2^"}")
+  | IT EXP ASPAS EXP ASPAS IT("\\textit{"^EXP1^"''"^EXP2^"''}")
+  | IT EXP ASPAS EXP ASPAS EXP IT("\\textit{"^EXP1^"''"^EXP2^"''"^EXP3^"}")
+  
+NEGNONTERM : NEG EXP NEG("\\textbf{ "^EXP^" }")
+  | NEG ASPAS EXP ASPAS NEG("\\textbf{''"^EXP1^"''}")
+  | NEG ASPAS EXP ASPAS EXP NEG("\\textbf{''"^EXP1^"''"^EXP2^"}")
+  | NEG EXP ASPAS EXP ASPAS NEG("\\textbf{"^EXP1^"''"^EXP2^"''}")
+  | NEG EXP ASPAS EXP ASPAS EXP NEG("\\textbf{"^EXP1^"''"^EXP2^"''"^EXP3^"}")
+  
+ITNEGNONTERM: ITNEG EXP ITNEG ("\\textbf{\\textit{ "^EXP^" }}")
+  | ITNEG ASPAS EXP ASPAS ITNEG("\\textbf{\\textit{''"^EXP1^"''}}")
+  | ITNEG ASPAS EXP ASPAS EXP ITNEG("\\textbf{\\textit{''"^EXP1^"''"^EXP2^"}}")
+  | ITNEG EXP ASPAS EXP ASPAS ITNEG("\\textbf{\\textit{"^EXP1^"''"^EXP2^"''}}")
+  | ITNEG EXP ASPAS EXP ASPAS EXP ITNEG("\\textbf{\\textit{"^EXP1^"''"^EXP2^"''"^EXP3^"}}")
+  
+ASPASNONTERM : ASPAS EXP ASPAS ("''"^EXP1^"''")
+      | EXP ASPAS EXP ASPAS (EXP1^"''"^EXP2^"''")
+      | ASPAS EXP ASPAS EXP("''"^EXP1^"''"^EXP2)
+      | EXP ASPAS EXP ASPAS EXP(EXP1^"''"^EXP2^"''"^EXP3)
+      | ASPAS EXP ASPAS ITNONTERM ("teste")
+      
+
+      

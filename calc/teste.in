@@ -11,28 +11,40 @@
 	//azul
 	blabla72
 	naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista
+	
+	"aspas" 
+	esquerda "aspas" direita
+	"aspas" direita
+	esquerda "aspas"
+	"teste1", "teste2", "teste3", "teste4", "teste5" *teste*
+	
 	*italico*
-	*"italico com aspas"*
-	//*palavra a esquerda "aspas"*
-	//*"aspas" palavra a direita*
-	//*esquerda "meio aspas" direita*
+	* " italico com aspas " *
+	*palavra a esquerda "aspas"*
+	*"aspas" palavra a direita*
+	*esquerda "meio aspas" direita*
+	//* "um"*
 
 	**negrito**
 	**"negrito com aspas"**
+	** esquerda "aspas" **
+	** "aspas" direita**
+	** esquerda "aspas" direita**
 
 	deixar possivel utilizar as duas formas
 	* ** italico e negrito** *
 	** *negrito e italico* **
 	***terceira forma de escrever italico e negrito***
 
-	//*** "esquerda aspas" expressao ***
-	//*** expressao "direita aspas" ***
+	*** "negrito aspas" ***
+	*** "esquerda aspas" expressao ***
+	*** expressao "direita aspas" ***
 	//*** "esquerda aspas" expressao "direita aspas" ***
-	//*** esquerda "aspas" direita ***
+	*** esquerda "aspas" direita ***
 
 	a+b
 
-	"aspas" 
+	
 
 	#enumerate
 		\it teste 1
