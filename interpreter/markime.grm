@@ -44,7 +44,7 @@ fun trim s =
 %pos int
 
 
-%term IT | NEG | ITNEG | LINK | ASPAS | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string | NUM of string | CONCAT | PLUS | SUB | DIV | TIMES
+%term IT | NEG | ITNEG | LINK | ASPAS | PARAGRAPH of string | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string | NUM of string | CONCAT | PLUS | SUB | DIV | TIMES
 %nonterm EXP of string | START of string option | ASPASNONTERM of string | ITNONTERM of string | NEGNONTERM of string | ITNEGNONTERM of string
 
 %name Markime
@@ -74,8 +74,10 @@ fun trim s =
       | EXP TIMES EXP ( multiplyString( trim(EXP1), trim(EXP2)) )
       | EXP DIV EXP ( divideString( trim(EXP1), trim(EXP2)) )
       | EXP SUB EXP ( substractString( trim(EXP1), trim(EXP2)) )
+
+      | PARAGRAPH ("\n")
       
-      |TXT (TXT)
+      | TXT (TXT)
       
 
 ITNONTERM :  IT EXP IT("\\textit{ "^EXP1^"}")

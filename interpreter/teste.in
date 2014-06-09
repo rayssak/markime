@@ -2,34 +2,46 @@
 	primeira linha 
 	[link] (linkteste.com.br)
 
+	--
+
 	#equation
 		1 + 2
 	##equation
 	blabla dfjasldkj sdfks
 	teste novo
 
-	//azul
-	blabla72
-	naoshit  42 se tirar os 3 primeiros caracteres dessa linha, o programa diz que tem uma bad word na lista
+	--
+
+	//comentario 1
+	blablabla
+	wrongword o programa diz que tem uma bad word na lista, apenas gera um warning
+
+	--	
 	
 	"aspas" 
 	esquerda "aspas" direita
 	"aspas" direita
 	esquerda "aspas"
 	"teste1", "teste2", "teste3", "teste4", "teste5" *teste*
-	
+
+	--	
+
 	*italico*
 	* " italico com aspas " *
 	*palavra a esquerda "aspas"*
 	*"aspas" palavra a direita*
 	*esquerda "meio aspas" direita*
-	//* "um"*
+	//comentario 2
 
+	--
+	
 	**negrito**
 	**"negrito com aspas"**
 	** esquerda "aspas" **
 	** "aspas" direita**
 	** esquerda "aspas" direita**
+
+	--
 
 	deixar possivel utilizar as duas formas
 	* ** italico e negrito** *
@@ -42,10 +54,10 @@
 	//*** "esquerda aspas" expressao "direita aspas" ***
 	*** esquerda "aspas" direita ***
 
+	--
+
 	a+b
-
 	
-
 	#enumerate
 		\it teste 1
 		\it teste 2
