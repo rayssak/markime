@@ -44,12 +44,12 @@ fun trim s =
 %pos int
 
 
-%term IT | NEG | ITNEG | LINK | ASPAS | PARAGRAPH of string | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string | NUM of string | CONCAT | PLUS | SUB | DIV | TIMES
+%term IT | NEG | ITNEG | LINK | ASPAS | PARAGRAPH | SEMI | ITENIZE | PAR_OPEN | PAR_CLOSE | COMMAND_START | COMMAND_END | EOF | TXT of string | NUM of string | CONCAT | PLUS | SUB | DIV | TIMES
 %nonterm EXP of string | START of string option | ASPASNONTERM of string | ITNONTERM of string | NEGNONTERM of string | ITNEGNONTERM of string
 
 %name Markime
 
-%prefer PLUS TIMES DIV SUB
+%prefer TIMES DIV PLUS SUB
 
 %noshift EOF
 %verbose
@@ -66,7 +66,7 @@ fun trim s =
       | COMMAND_START EXP ("\\begin{"^EXP^"} ")
       | LINK PAR_OPEN EXP PAR_CLOSE ("[ "^EXP^" ] {"^EXP^"}")
       | ITNEGNONTERM (ITNEGNONTERM)
-      | COMMAND_END EXP ("\\end{"^EXP^"}")
+      | COMMAND_END EXP ("\\end{"^EXP^"}\n")
       | ITENIZE EXP ("\\item"^EXP)
       | EXP CONCAT EXP (EXP1^EXP2)
 
@@ -75,7 +75,7 @@ fun trim s =
       | EXP DIV EXP ( divideString( trim(EXP1), trim(EXP2)) )
       | EXP SUB EXP ( substractString( trim(EXP1), trim(EXP2)) )
 
-      | PARAGRAPH ("\n")
+      | PARAGRAPH ("")
       
       | TXT (TXT)
       
@@ -102,7 +102,7 @@ ASPASNONTERM : ASPAS EXP ASPAS ("''"^EXP1^"''")
       | EXP ASPAS EXP ASPAS (EXP1^"''"^EXP2^"''")
       | ASPAS EXP ASPAS EXP("''"^EXP1^"''"^EXP2)
       | EXP ASPAS EXP ASPAS EXP(EXP1^"''"^EXP2^"''"^EXP3)
-      | ASPAS EXP ASPAS ITNONTERM ("teste")
+      | ASPAS EXP ASPAS ITNONTERM ("''"^EXP1^"''"^ITNONTERM)
       
 
       

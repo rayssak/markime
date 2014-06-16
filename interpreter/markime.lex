@@ -18,7 +18,7 @@ digit= [0-9];
 alpha= [ A-Za-z];
 special=[\+\,\.\;\:\~\^\!\?];
 alls = {alpha}|{digit}|{special};
-bad_words = [wrongword |wrongword2];
+bad_words = [wrongword |wrongword2 ];
 
 blank = [ ];
 ws = [\t];
@@ -31,7 +31,8 @@ ws = [\t];
 <DEFAULT>{blank}*"$$"		=> (YYBEGIN MATH; continue ());
 <DEFAULT>{blank}*{ws}+		=> (lex());
 
-<DEFAULT>{bad_words}+   => (error ("stop-words encontradas "^yytext,!pos,!pos);continue ()); 
+<DEFAULT>{bad_words}+   => (error ("[WARNING] stop-word encontrada "^yytext,!pos,!pos);
+             lex()); 
 
 <DEFAULT>{blank}*"#"		=> (Tokens.COMMAND_START(!pos,!pos));
 <DEFAULT>{blank}*"##"		=> (Tokens.COMMAND_END(!pos,!pos));
@@ -44,7 +45,7 @@ ws = [\t];
 <DEFAULT>{blank}*"\\it"		=> (Tokens.ITENIZE(!pos,!pos));
 <DEFAULT>{blank}*"[link]"	=> (Tokens.LINK(!pos,!pos));
 <DEFAULT>{blank}*"\""	        => (Tokens.ASPAS(!pos,!pos));
-<DEFAULT>"--"			=> (Tokens.PARAGRAPH(yytext, !pos,!pos));
+<DEFAULT>"--"			=> (Tokens.PARAGRAPH(!pos,!pos));
 <DEFAULT>\n			=> (Tokens.SEMI(!pos,!pos));
 <DEFAULT>{alls}+		=> (Tokens.TXT(yytext,!pos,!pos));
 

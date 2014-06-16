@@ -1,5 +1,10 @@
 #document
-	primeira linha 
+
+	#abstract
+		Resumo simples aqui
+	##abstract
+
+	Primeira linha 
 	[link] (linkteste.com.br)
 
 	--
@@ -7,23 +12,21 @@
 	#equation
 		1 + 2
 	##equation
-	blabla dfjasldkj sdfks
-	teste novo
 
+	Blabla dfjasldkj sdfks
+	teste novo
+	
 	--
 
 	//comentario 1
-	blablabla
-	wrongword o programa diz que tem uma bad word na lista, apenas gera um warning
-
-	--	
+	Blabla
+	wrongword  aqui temos um warning com uma stopword
 	
 	"aspas" 
 	esquerda "aspas" direita
 	"aspas" direita
 	esquerda "aspas"
 	"teste1", "teste2", "teste3", "teste4", "teste5" *teste*
-
 	--	
 
 	*italico*
@@ -33,41 +36,49 @@
 	*esquerda "meio aspas" direita*
 	//comentario 2
 
-	--
-	
 	**negrito**
 	**"negrito com aspas"**
 	** esquerda "aspas" **
 	** "aspas" direita**
 	** esquerda "aspas" direita**
 
-	--
-
-	deixar possivel utilizar as duas formas
+	Deixar possivel utilizar as duas formas
 	* ** italico e negrito** *
 	** *negrito e italico* **
 	***terceira forma de escrever italico e negrito***
 
+	--
+
 	*** "negrito aspas" ***
 	*** "esquerda aspas" expressao ***
 	*** expressao "direita aspas" ***
-	//*** "esquerda aspas" expressao "direita aspas" ***
 	*** esquerda "aspas" direita ***
 
-	--
-
 	a+b
-	
+
+
 	#enumerate
 		\it teste 1
 		\it teste 2
 	##enumerate
 
+	22 plus 3 equals:
 	$$ 22 + 3 $$
+	--
 
+	22 minus 3 equals:
 	$$ 22 - 3 $$
+	--
 
+	22 div 3 equals:
 	$$ 22 / 3 $$
+	--
 
+	22 times 3 equals: 
 	$$ 22 * 3 $$
+	--
+
+	22 plus 10 times 3 equals: 
+	$$ 22 + 10 * 3 $$
+	
 ##document
