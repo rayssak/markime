@@ -2,7 +2,7 @@
 
 fun print_exec(txt: string) =
   let
-    val outs = TextIO.openAppend "teste.tex"
+    val outs = TextIO.openAppend "saida.tex"
     fun helper(txt_aux: string) =
           (TextIO.output(outs,txt_aux); TextIO.closeOut outs)
   in

@@ -36,8 +36,8 @@ struct
   fun parse () = 
 	
         let
-	    val filenamein   =  "teste.in" : string
-	    val filenameout  =  "teste.tex" : string
+	    val filenamein   =  "entrada.in" : string
+	    val filenameout  =  "saida.tex" : string
 	    val inStream     =  TextIO.openIn  filenamein
             val outStream    =  TextIO.openOut filenameout;
 	
