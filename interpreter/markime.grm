@@ -81,28 +81,28 @@ fun trim s =
       
 
 ITNONTERM :  IT EXP IT("\\textit{ "^EXP1^"}")
-  | IT ASPAS EXP ASPAS IT("\\textit{''"^EXP1^"''}")
-  | IT ASPAS EXP ASPAS EXP IT("\\textit{''"^EXP1^"''"^EXP2^"}")
-  | IT EXP ASPAS EXP ASPAS IT("\\textit{"^EXP1^"''"^EXP2^"''}")
-  | IT EXP ASPAS EXP ASPAS EXP IT("\\textit{"^EXP1^"''"^EXP2^"''"^EXP3^"}")
+  | IT ASPAS EXP ASPAS IT("\\textit{``"^EXP1^"\"}")
+  | IT ASPAS EXP ASPAS EXP IT("\\textit{``"^EXP1^"\""^EXP2^"}")
+  | IT EXP ASPAS EXP ASPAS IT("\\textit{"^EXP1^"``"^EXP2^"\"}")
+  | IT EXP ASPAS EXP ASPAS EXP IT("\\textit{"^EXP1^"``"^EXP2^"\""^EXP3^"}")
   
 NEGNONTERM : NEG EXP NEG("\\textbf{ "^EXP^" }")
-  | NEG ASPAS EXP ASPAS NEG("\\textbf{''"^EXP1^"''}")
-  | NEG ASPAS EXP ASPAS EXP NEG("\\textbf{''"^EXP1^"''"^EXP2^"}")
-  | NEG EXP ASPAS EXP ASPAS NEG("\\textbf{"^EXP1^"''"^EXP2^"''}")
-  | NEG EXP ASPAS EXP ASPAS EXP NEG("\\textbf{"^EXP1^"''"^EXP2^"''"^EXP3^"}")
+  | NEG ASPAS EXP ASPAS NEG("\\textbf{``"^EXP1^"\"}")
+  | NEG ASPAS EXP ASPAS EXP NEG("\\textbf{``"^EXP1^"\""^EXP2^"}")
+  | NEG EXP ASPAS EXP ASPAS NEG("\\textbf{"^EXP1^"``"^EXP2^"\"}")
+  | NEG EXP ASPAS EXP ASPAS EXP NEG("\\textbf{"^EXP1^"``"^EXP2^"\""^EXP3^"}")
   
 ITNEGNONTERM: ITNEG EXP ITNEG ("\\textbf{\\textit{ "^EXP^" }}")
-  | ITNEG ASPAS EXP ASPAS ITNEG("\\textbf{\\textit{''"^EXP1^"''}}")
-  | ITNEG ASPAS EXP ASPAS EXP ITNEG("\\textbf{\\textit{''"^EXP1^"''"^EXP2^"}}")
-  | ITNEG EXP ASPAS EXP ASPAS ITNEG("\\textbf{\\textit{"^EXP1^"''"^EXP2^"''}}")
-  | ITNEG EXP ASPAS EXP ASPAS EXP ITNEG("\\textbf{\\textit{"^EXP1^"''"^EXP2^"''"^EXP3^"}}")
+  | ITNEG ASPAS EXP ASPAS ITNEG("\\textbf{\\textit{``"^EXP1^"\"}}")
+  | ITNEG ASPAS EXP ASPAS EXP ITNEG("\\textbf{\\textit{``"^EXP1^"\""^EXP2^"}}")
+  | ITNEG EXP ASPAS EXP ASPAS ITNEG("\\textbf{\\textit{"^EXP1^"``"^EXP2^"\"}}")
+  | ITNEG EXP ASPAS EXP ASPAS EXP ITNEG("\\textbf{\\textit{"^EXP1^"``"^EXP2^"\""^EXP3^"}}")
   
-ASPASNONTERM : ASPAS EXP ASPAS ("''"^EXP1^"''")
-      | EXP ASPAS EXP ASPAS (EXP1^"''"^EXP2^"''")
-      | ASPAS EXP ASPAS EXP("''"^EXP1^"''"^EXP2)
-      | EXP ASPAS EXP ASPAS EXP(EXP1^"''"^EXP2^"''"^EXP3)
-      | ASPAS EXP ASPAS ITNONTERM ("''"^EXP1^"''"^ITNONTERM)
+ASPASNONTERM : ASPAS EXP ASPAS ("``"^EXP1^"\"")
+      | EXP ASPAS EXP ASPAS (EXP1^"``"^EXP2^"\"")
+      | ASPAS EXP ASPAS EXP("``"^EXP1^"\""^EXP2)
+      | EXP ASPAS EXP ASPAS EXP(EXP1^"``"^EXP2^"\""^EXP3)
+      | ASPAS EXP ASPAS ITNONTERM ("``"^EXP1^"\""^ITNONTERM)
       
 
       
